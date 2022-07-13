@@ -327,6 +327,12 @@
 // for (let entry of Object.entries(circle))
 //     console.log(entry);
 
+// Object.entries返回一个数组，每个数组元素又是一个数组，该数组中的元素分别是键，和对应的值
+// 示例如下：
+// obj = {value:10, name:'what'};
+// Object.entries(obj)
+// [['value', 10], ['name', 'what']]
+
 // in 操作符：检测某key是否存在于特定对象
 // 注意，key要以字符串的形式传入
 // if ('radius' in circle) console.log('yes');
