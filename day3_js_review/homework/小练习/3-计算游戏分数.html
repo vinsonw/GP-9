@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+  // 一个游戏，前20关是每一关自身的分数，21-30关每一关是10分；31-40关每一关是20分；
+  // 41-49关每一关是30分,50关是100分。输入你现在闯到的关卡数，求你现在拥有的分数
+  /* 
+  
+    闯过第15关  分数为 1到15的和
+    闯过第20关  分数为 1到20的和
+    
+    闯过第21关  分数为 1到20的和 加上10
+    闯过第22关  分数为 1到20的和 加上10 加上10
+    闯过第31关  分数为 1到20的和 加上10*10 加上 20
+    闯过第32关  分数为 1到20的和 加上10*10 加上 20 加上 20
+  
+  */
+ function levelToLevelScore(level) {
+  if (level < 21) return level;
+  if (level < 31) return 10;
+  if (level < 41) return 20;
+  if (level < 50) return 30;
+  return 100;
+
+ }
+
+ function levelToScore(level) {
+  let sum = 0;
+  for (let i = 1; i < level+1; i++)
+    sum += levelToLevelScore(i);
+  return sum;
+}
+
+
+let level = 32;
+document.write(`闯过${level}关的分数是${levelToScore(level)}`);
+  
+</script>
+
+</html>

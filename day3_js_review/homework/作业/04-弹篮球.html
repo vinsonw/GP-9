@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+  // 篮球从5米高的地方掉下来，每次弹起的高度是原来的30%，经过几次弹起，篮球的高度小于0.1米。
+ let height = 5;
+ let cnt = 0
+ do {
+    height *= 0.3; 
+    cnt++;
+ } while (height >= 0.1)
+ document.write(`经过了${cnt}次弹起，高度小于0.1米，为${height.toFixed(2)}米`);
+
+</script>
+
+</html>

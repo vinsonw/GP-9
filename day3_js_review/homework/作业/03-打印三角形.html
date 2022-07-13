@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+  // 完成一个三角形打印功能
+  // 效果如下图 16-20行为效果
+  /*
+       * 1 / 4
+      *** 3 / 3
+     ***** 5 / 2
+    ******* 7 / 1
+   ********* 9 / 0
+
+  */
+let rows = 5;
+for (let row=1; row<rows+1; row++) {
+  let pattern='';
+  for (let space=row; space<rows; space++)
+    pattern += '&nbsp;&nbsp;';
+  for (let starNum=0; starNum<2*row-1; starNum++)
+    pattern += '*';
+  document.write(pattern+'<br>');
+  // console.log(pattern);
+}
+
+</script>
+
+</html>
