@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// 编写一个函数，计算两个数字的和、差、积、商    要求：使用传参的形式
+var a = parseInt(prompt("输入第一个数字："));
+var b = parseInt(prompt("输入第二个数字："));
+var f = prompt("输入计算方式：+、-、*、/");
+function arithmeticCalc(a, b, f) {
+   switch (f) {
+    case '+':
+        return a + b;
+    case '-':
+        return a - b;
+    case '*':
+        return a * b;
+        break;
+    case '/':
+        return a / b;
+    default:
+        document.write('不支持的运算');
+        throw new Error('不支持的运算');
+   } 
+}
+document.write(`${a} ${f} ${b} = ${arithmeticCalc(a, b, f)}`);
+</script>
+</html>

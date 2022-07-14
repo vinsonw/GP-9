@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+// 标准体重：
+// 男士体重=身高-100±3      
+// 女士体重=身高-110±3。
+//  写个函数，输入身高、体重、性别，输出偏重、正常、偏瘦。
+function evaluateHealth(height, weight, gender) {
+    var standardWeight = (gender == '男') ? height - 100: height - 110;
+    if (weight < standardWeight - 3)
+        document.write(`${gender} ${height}cm ${weight}kg 偏瘦`);
+    else if (weight <= standardWeight + 3)
+        document.write(`${gender} ${height}cm ${weight}kg 正常`);
+    else
+        document.write(`${gender} ${height}cm ${weight}kg 偏重`);
+}
+var height = prompt('请输入你的身高(cm)');
+var weight = prompt('请输入你的体重(kg)');
+var gender = prompt('请输入你的性别');
+evaluateHealth(height, weight, gender);
+</script>
+</html>
