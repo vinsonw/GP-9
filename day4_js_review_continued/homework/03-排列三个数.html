@@ -16,6 +16,9 @@ var num3 = parseInt(prompt("输入第三个数："));
 
 let arr = [num1, num2, num3];
 // 冒泡排序
+// 重点：
+// 外层循环管冒泡的次数
+// 内层循环管每次冒泡的范围
 let temp;
 // 最大移动（冒泡）次数是lengh-1，因为length-1次冒泡后，剩余的那个没冒泡的
 // 自然在水底（也就是最左边）
@@ -28,9 +31,7 @@ for (let i = 0; i < arr.length - 1; i++)
         arr[j] = arr[j+1]
         arr[j+1] = temp;
      }
-let pattern = '';
-for (let i of arr) pattern += '&nbsp'+i+'&nbsp';
-document.write(pattern);
+document.write(arr.toString());
 
 </script>
 </html>
