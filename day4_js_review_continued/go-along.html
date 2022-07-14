@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4</title>
+</head>
+<body>
+    
+</body>
+<script>
+// 中午小作业：封装质数判断为一个函数
+function isPrime(num) {
+    let isPrime = true;
+    for (let i = 2; i < num/2; i++)
+        if ( num % i === 0 ) {
+            isPrime = false;
+            break;
+        }
+    return isPrime;
+}
+
+for (let i = 100; i < 200; i++)
+    if (isPrime(i)) document.write(`${i} &nbsp`);
+</script>
+</html>
