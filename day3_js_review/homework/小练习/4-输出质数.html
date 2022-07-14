@@ -18,13 +18,15 @@
 
 function isPrime(num) {
   let isPrime = true;
-  for (let i = 2; i < num; i++)
-    if (num % i == 0)
-      isPrime = false;
+  for (let i = 2; i < num/2; i++)// !注意：只需要比较到num/2即可（如果到num/2还没有被整除，之后num/2~num-1都不会被整除，因为1<商<2）
+    if (num % i == 0) { 
+        isPrime = false; 
+        break; // 之前忘了
+    }
   return isPrime;
 }
 
-for (let num = 1; num <= 100; num++) {
+for (let num = 100; num <= 200; num++) {
   if (isPrime(num)) document.write(`${num} &nbsp; &nbsp;`)
 }
 

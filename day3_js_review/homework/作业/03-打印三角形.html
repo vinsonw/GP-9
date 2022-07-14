@@ -20,15 +20,16 @@
    ********* 9 / 0
 
   */
-let rows = 5;
+let rows = 10;
 for (let row=1; row<rows+1; row++) {
   let pattern='';
   for (let space=row; space<rows; space++)
     pattern += '&nbsp;&nbsp;';
   for (let starNum=0; starNum<2*row-1; starNum++)
     pattern += '*';
+  // 一行内容同时用document.write()输出空格不会错位（两个&nbsp;相当于一个*宽度)
+  // 分开输出空格会错位，无法出现等腰效果
   document.write(pattern+'<br>');
-  // console.log(pattern);
 }
 
 </script>

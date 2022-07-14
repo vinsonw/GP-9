@@ -24,6 +24,8 @@
   
   */
  function levelToLevelScore(level) {
+  if (level < 0 || level > 50)
+    throw new Error('Invalid input.');
   if (level < 21) return level;
   if (level < 31) return 10;
   if (level < 41) return 20;
@@ -40,7 +42,7 @@
 }
 
 
-let level = 32;
+let level = 21;
 document.write(`闯过${level}关的分数是${levelToScore(level)}`);
   
 </script>
