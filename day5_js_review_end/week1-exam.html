@@ -1,0 +1,149 @@
+<!-- 
+一. 单选题： 
+1-5：  A B B A D
+6-10:  B A C B A
+11-15: C B A D C
+16-20: C B B A B
+21-25: C B C C C
+26-30: A C C A B
+
+二. 多选题：
+1. ABC
+2. AC
+3. BD
+4. A
+5. D
+6. BCD
+7. ABCD
+8. ABCD
+9. ABC
+10. ACD
+11. BCD
+12. ACD
+13. ABC
+14. BCD
+15. CD
+16. AB
+17. CD
+18. BCD
+19. ABC
+20. ABC
+
+ -->
+<script>
+    /* 
+    1. 计算微信运动步数
+      已知小明2021-08-16至2021-09-15的微信运动步数数据：
+      请编写一个函数，将其中某一个时间段的步数进行小计，返回结果
+      示例：
+      输入两个时间：2021-09-01,  2021-09-07
+      返回：59955      
+   */
+  // 数组对象中的step属性中的值为步数
+  // 数组对象中的date属性中的值为日期
+  var steps = [
+    {"step":1753,"date":"2021-08-16"},
+    {"step":11274,"date":"2021-08-17"},
+    {"step":7676,"date":"2021-08-18"},
+    {"step":9360,"date":"2021-08-19"},
+    {"step":8816,"date":"2021-08-20"},
+    {"step":11808,"date":"2021-08-21"},
+    {"step":10655,"date":"2021-08-22"},
+    {"step":8075,"date":"2021-08-23"},
+    {"step":10070,"date":"2021-08-24"},
+    {"step":8130,"date":"2021-08-25"},
+    {"step":10590,"date":"2021-08-26"},
+    {"step":9419,"date":"2021-08-27"},
+    {"step":2005,"date":"2021-08-28"},
+    {"step":3972,"date":"2021-08-29"},
+    {"step":2945,"date":"2021-08-30"},
+    {"step":3278,"date":"2021-08-31"},
+    {"step":5561,"date":"2021-09-01"},
+    {"step":5568,"date":"2021-09-02"},
+    {"step":10340,"date":"2021-09-03"},
+    {"step":9885,"date":"2021-09-04"},
+    {"step":12394,"date":"2021-09-05"},
+    {"step":8328,"date":"2021-09-06"},
+    {"step":7879,"date":"2021-09-07"},
+    {"step":12817,"date":"2021-09-08"},
+    {"step":7416,"date":"2021-09-09"},
+    {"step":5868,"date":"2021-09-10"},
+    {"step":12907,"date":"2021-09-11"},
+    {"step":9720,"date":"2021-09-12"},
+    {"step":7055,"date":"2021-09-13"},
+    {"step":6323,"date":"2021-09-14"},
+    {"step":9785,"date":"2021-09-15"},
+    {"step":6919,"date":"2021-09-16"},
+    {"step":4882,"date":"2021-09-17"},
+    {"step":4557,"date":"2021-09-18"},
+    {"step":10006,"date":"2021-09-19"},
+    {"step":6300,"date":"2021-09-20"},
+    {"step":4825,"date":"2021-09-21"}
+  ]
+ function sumStepsBetween(fromDate, toDate) {
+  // 输入校验
+  var fromDateNum = Number(fromDate.substring(0,4) + fromDate.substring(5,7) + fromDate.substring(8,10));
+  var toDateNum = Number(toDate.substring(0,4) + toDate.substring(5,7) + toDate.substring(8,10));
+  if (isNaN(fromDateNum) || isNaN(toDateNum)) {
+    alert('请输入正确的日期格式');
+    return;
+  }
+  if (fromDateNum < 20210816 || toDateNum > 20210915) {
+    alert('超出查询范围');
+    return;
+  }
+
+  // 计算步数
+  var totalSteps = 0;
+  for (var dayKey in steps) {
+    var dayData = steps[dayKey];
+    if (dayData.date >= fromDate && dayData.date <= toDate)
+      totalSteps += dayData.step;
+  }
+
+  return totalSteps;
+ } 
+//  var fromDate = prompt('第一题: 请输入查询的开始日期：格式为yyyy-mm-dd');
+//  var toDate = prompt('第一题: 请输入查询的结束日期：格式为yyyy-mm-dd');
+var fromDate = '2021-09-01';
+var toDate  = '2021-09-07';
+var sum = sumStepsBetween(fromDate, toDate);
+if (sum)
+  document.write(`第一题：${fromDate}到${toDate} 的步数是： ${sum} <br>`);
+else
+  document.write('第一题：输入有误 <br>')
+</script>
+<script>
+  // 2. 有个皮球，每次落地弹起都是高度的一半，如果从10米高的地方丢下，第十次弹起时，皮球总过经历了多少距离。
+  function sumHeight(initHeight, remainRatio, times) {
+    var sumHeight = initHeight;
+    var bounceHeight = initHeight;
+    for (var i = 2; i <= times; i++) {
+        bounceHeight = remainRatio * bounceHeight;
+        sumHeight += 2 * bounceHeight;
+    }
+    return sumHeight;
+  }
+  document.write(`第二题：总共经过了距离${sumHeight(10, 0.5, 10)}米<br>`);
+
+</script>
+<script>
+  /* 
+   通过循环打印出一下图案
+
+  ***
+  ****
+  *****
+  ******
+  
+  */
+document.write('第三题：<br>')
+for (var row=3; row<7; row++) {
+  var pattern = ''
+  for (var ir=0; ir<row; ir++)
+    pattern += '*';
+  document.write(pattern+'<br>');
+}
+
+
+</script>

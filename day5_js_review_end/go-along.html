@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5</title>
+</head>
+<body>
+    <ol>
+        <li>对象数据类型(object)</li>
+        <li>递归(recursion)</li>
+        <li>浅拷贝和深拷贝(递归实现)</li>
+    </ol>
+</body>
+<script>
+    function Fact(n) {
+        if (n === 1) return 1;
+        return n*Fact(n-1);
+    }
+    console.log(Fact(6));
+    // 1 * 2 * 3 * 4 == 24
+</script>
+</html>
