@@ -14,24 +14,26 @@ var num1 = parseInt(prompt("输入第一个数："));
 var num2 = parseInt(prompt("输入第二个数："));
 var num3 = parseInt(prompt("输入第三个数："));
 
-let arr = [num1, num2, num3];
-// 冒泡排序
-// 重点：
-// 外层循环管冒泡的次数
-// 内层循环管每次冒泡的范围
-let temp;
-// 最大移动（冒泡）次数是lengh-1，因为length-1次冒泡后，剩余的那个没冒泡的
-// 自然在水底（也就是最左边）
-for (let i = 0; i < arr.length - 1; i++)
-    // 每一次内部循环代表一次冒泡，每次冒泡过后需要冒泡的
-    // 数组长度都会减1，通过 arr.legnth - 1 - i中的 '- i'减去
-    for (let j = 0; j < arr.length - 1 - i; j++)
-     if (arr[j] > arr[j+1]) {
-        temp = arr[j];
-        arr[j] = arr[j+1]
-        arr[j+1] = temp;
-     }
-document.write(arr.toString());
+function sort(...arr) {
+   // 冒泡排序
+   // !重点：
+   // 外层循环管冒泡的次数
+   // 内层循环管每次冒泡的范围
+   let temp;
+   // 最大移动（冒泡）次数是lengh-1，因为length-1次冒泡后，剩余的那个没冒泡的
+   // 自然在水底（也就是最左边）
+   for (let i = 0; i < arr.length - 1; i++)
+      // 每一次内部循环代表一次冒泡，每次冒泡过后需要冒泡的
+      // 数组长度都会减1，通过 arr.legnth - 1 - i中的 '- i'减去
+      for (let j = 0; j < arr.length - 1 - i; j++)
+      if (arr[j] > arr[j+1]) {
+         temp = arr[j];
+         arr[j] = arr[j+1]
+         arr[j+1] = temp;
+      }
+   document.write(arr.toString());
+}
+sort(num1, num2, num3);
 
 </script>
 </html>
