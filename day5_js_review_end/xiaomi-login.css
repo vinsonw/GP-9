@@ -1,0 +1,243 @@
+body {
+    margin: 0; margin: 0;
+    display: flex;
+
+}
+
+a {
+    text-decoration: none;;
+    color: #000;
+}
+
+ul,ol {
+    list-style-type: none;
+}
+
+.left {
+    width: 27%;
+    background-color: lightblue;
+    background-image: url("img/featured.jpg");
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
+.right {
+    height: 100%;
+    flex-grow: 1;
+    /* background-color: pink; */
+
+    font-size: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    height: 100%;
+    
+    /* 防止logo旁边的"小米账号"折行 */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+}
+.logo>svg {
+    margin-left: 23px;
+    margin-right: 13px;
+}
+
+.logo>h1 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.nav {
+    font-size: 14px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav>ul {
+    display: flex;
+    align-items: center;
+}
+.nav > ul > li {
+    padding-right: 24px;
+}
+.nav > ul > li > a {
+    color: #838383;
+}
+
+.nav > ul > li:last-child {
+    border-right: 1px solid #c0c0c0; 
+}
+
+.nav>select {
+    margin: 0 24px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #838383;
+}
+
+.login {
+    width: 450px; height: 570px;
+    border-radius: 4px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 47px 47px 39px;
+    /* box-shadow: 0 0 3px 5px rgba(0,0,0,0.3); */
+    box-shadow: 0 20px 50px 0 hsl(0deg 0% 64% / 10%);
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 12px;
+}
+
+.section {
+    display: flex;
+}
+
+.section>div {
+    margin-right: 20px;
+}
+
+.section>div>a {
+    font-size: 22px;
+    color: rgb(187, 187, 187);
+    line-height: 1.5em;
+}
+
+.section .active {
+    color: #000;
+}
+
+
+.section .active:after {
+    content: '';
+    display: block;
+    width: 2em;
+    border-bottom: 4px solid #fd6d1c;
+}
+
+
+
+.login>form {
+    width: 100%;
+}
+.login>form input[type=text],
+.login>form input[type=password],
+.login>form button {
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    border: none;
+    
+}
+.login>form input[type=text],
+.login>form input[type=password] {
+    padding-left: 21px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    background-color: #f9f9f9;
+    outline: none;
+}
+.login>form button {
+    margin-top: 10px;
+    background-color: #ffbe99;
+}
+.login>form input[type=text] {
+    margin-top: 25px;
+}
+.login>form input[type=password] {
+    margin-top: 10px;
+}
+.login>form input::placeholder {
+    font-size: 16px;
+    color: #c0c0c0;
+}
+.login>form input[type=checkbox] {
+    margin-top: 12px;
+}
+.login>form>p:nth-child(3) {
+    font-size: 14px;
+    color: #c0c0c0;
+}
+.login>form>p:nth-child(3)>label>span>a {
+    font-size: 13px;
+    padding: 0 8px;
+}
+
+.login>form>button{
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login>form .service {
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7px;
+}
+
+.login>form .service a {
+    color: #ff7342;
+}
+
+/* "其他方式登录" */
+.login>form>p:last-child {
+    font-size: 17px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #afafaf;
+
+    margin-top: 28px;
+}
+
+.social {
+    width: 258px;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    font-size: 26px;
+}
+
+.social > svg {
+    width: 1.8em;
+}
+
+
+.footer {
+    margin-top: auto;
+    
+
+    /* 设置padding防止窗口垂直方向缩小的时候，footer和上面的元素挤到一起 */
+    padding-top: 90px;
+    padding-bottom: 24px;
+
+    font-size: 12px;
+    color:rgb(153, 153, 153);
+}
+.footer a {
+    color:rgb(153, 153, 153);
+}
+
+@media only screen and (max-width:1000px) {
+    .left {
+        width: 0;
+    }
+    .right {
+       width: 100%; 
+    }
+}
