@@ -1,6 +1,15 @@
+html {
+    height: 100%;
+}
 body {
     margin: 0; margin: 0;
     display: flex;
+
+    /* *为了保证.right{min-height:100%}生效，其父级元素body也要设置高度，获取窗口高度 */
+    /* *如果设置height:100%，会有right部分溢出body的问题，导致左侧图片错位 */
+    /* *设置min-height:100%让body高度随right高度增长而增长 */
+    /* *默认left的aligin-self属性是stretch，高度和body一致 => left 和 right高度同步，不会出现左侧图片错位*/
+    min-height: 100%;
 
 }
 
@@ -14,7 +23,10 @@ ul,ol {
 }
 
 .left {
+    /* *不需要设置高度，align-self的默认值是stretch，left高度和body保持一致，body高度和right保持一致 */
     width: 27%;
+    /* 在宽屏上限制图片最大宽度 */
+    max-width: 374px;
     background-color: lightblue;
     background-image: url("img/featured.jpg");
     background-position: 50% 50%;
@@ -22,14 +34,16 @@ ul,ol {
 }
 
 .right {
-    height: 100%;
+    /* *不设置高度，高度等于内容高度，垂直方向的justify-content: space-between无想要效果 */
+    /* *设置最小高度为窗口高度，当内容高度小于窗口高度时，垂直方向内容均匀分布 */
+    min-height: 100%;
     flex-grow: 1;
-    /* background-color: pink; */
 
     font-size: 26px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 .header {
     width: 100%;
@@ -66,6 +80,8 @@ ul,ol {
 }
 
 .nav>ul {
+    /* 防止nav里面的文字折行 */
+    flex-shrink: 0;
     display: flex;
     align-items: center;
 }
@@ -81,6 +97,8 @@ ul,ol {
 }
 
 .nav>select {
+    /* 防止nav里面的文字折行 */
+    flex-shrink: 0;
     margin: 0 24px;
     background-color: transparent;
     border: none;
@@ -219,11 +237,12 @@ ul,ol {
 
 
 .footer {
-    margin-top: auto;
+    /* margin-top: auto; */
     
 
     /* 设置padding防止窗口垂直方向缩小的时候，footer和上面的元素挤到一起 */
     padding-top: 90px;
+    /* padding-top: 900px; */
     padding-bottom: 24px;
 
     font-size: 12px;
