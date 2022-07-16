@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {padding: 0; margin: 0;}
+        /*下面这句话是必要的，让html根元素引用到viewport的高，
+        如果不写，height的默认值是auto，没有内容的情况下，其计算值为0，
+        也就是没有内容的情况下，height==0，高度塌陷，显示空白，
+        MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/height
+        */
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        .parent {
+            width: 100%; height: 100%;
+            background-color: lightblue;
+        }
+        .child {
+            width: 1000px; height: 100%; 
+            background-color: lightcoral;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+   <div class="parent">
+    <div class="child"></div>
+   </div> 
+</body>
+</html>

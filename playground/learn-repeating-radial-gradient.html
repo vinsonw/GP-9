@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>repeating-radial-gradient</title>
+    <style>
+        div {
+            width: 500px; height: 300px;
+            /* background-image: repeating-radial-gradient(circle farthest-side at center,  red 0, blue 10%, yellow 20%); */
+            /* background-image: repeating-radial-gradient(circle closest-side at center,  red 0, blue 10%, yellow 20%); */
+            /* size的默认值是farthest-corner */
+            background-image: repeating-radial-gradient(circle farthest-corner at 100% bottom,  red 0, blue 10%, yellow 20%);
+            background-image: repeating-radial-gradient(circle farthest-side at 100% bottom,  red 0, blue 10%, yellow 20%);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    <style>
+        * {padding: 0; margin: 0;}
+        .parent {
+            width: 300px; height: 1300px;
+            border: 10px solid black;
+            padding: 10px;
+        }
+        .child:first-child {
+            width: 100px; height: 100px;
+            border:  5px solid red;
+            /* 只设置position:absolute不会让元素动起来，元素依然保持原来的位置 */
+            /* 但是因为不占位，可能会影响周围的元素, 此例中排在下面的蓝色div会顶上来 */
+            position: absolute;
+
+            /* 如果设置为fixed，不设置方位属性值，元素的位置会保持static时元素相对窗口的位置 */
+            /* position: fixed; */
+            
+            /* 复习一个概念：块级元素默认左边缘和父级元素的左边缘相接 */
+            /* 所以这里设置margin-left有用（将默认的"相接"隔开），设置margin-right无用 */
+            /* margin-left: 120px; */
+        }
+        .child:last-child {
+            width: 100px; height: 100px;
+            border:  10px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+</body>
+</html>

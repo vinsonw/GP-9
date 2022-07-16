@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1. 元素的包含块(containing block)的确定和元素的position的属性有关，
+        具体见https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block
+           2. 关于为什么需要确定元素的containing block，来自同一页面的解答："
+            The size and position of an element are often impacted by its 
+            containing block. Percentage values that are applied to the width, 
+            height, padding, margin, and offset properties of an absolutely 
+            positioned element (i.e., which has its position set to absolute or fixed) 
+            are computed from the element's containing block."
+        */
+        * {padding: 0; margin: 0;}
+        .parent1, .parent2 {
+            width: 500px; height: 500px;
+            background-color: lightblue;
+            border: 10px solid black;
+            padding: 10px;
+            position: relative;
+        }
+        .child1 {
+            background-color: lightcoral;
+            position: relative;
+            /*当position==relative时该元素的containing block是最近的块级元素祖先的content area(content box)*/
+            left: 0;
+            top: 0;
+
+            /*计算值：500 * 10% = 50px, 已右键inspect确认*/
+            width: 10%;
+        }
+        .child2 {
+            background-color: lightgreen;
+            position: absolute;
+            /*当position==absolute时该元素的containing block是最近的块级元素祖先的padding area(padding box)*/
+            left: 10px;
+            top: 10px;
+
+            /*计算值：520 * 10% = 52px，已右键inspect确认*/
+            width: 10%;
+        }
+    </style>
+</head>
+<body>
+   <div class="parent1">
+    <p class="child1">this is some content in parent1</p>
+   </div> 
+   <div class="parent2">
+    <p class="child2">this is some content in parent2</p>
+   </div> 
+</body>
+</html>

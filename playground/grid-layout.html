@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px; height: 500px;
+            border: 1px solid black; 
+            /* 没有这句话后面的都无效 */
+            display: grid;
+
+            grid-template-rows: 100px 100px 100px 100px 100px;
+            grid-template-columns: repeat(5, 1fr);
+        }
+        .item {
+            width: 100px; height: 100px;
+            background-color: red;
+        }
+
+        .i1 {
+            grid-area: 5/1;
+        }
+        .i2 {
+            grid-area: 4/2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item i1"></div>
+        <div class="item i2"></div>
+        <div class="item i3"></div>
+    </div>
+</body>
+</html>

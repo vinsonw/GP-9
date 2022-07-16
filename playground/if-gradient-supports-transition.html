@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px; height: 200px;
+            border: 1px solid black;
+             /* 以下渐变无效，hover事件发生时，颜色突然出现，无渐变效果 <-- 渐变不支持过渡 */
+            /* 但是高度渐变正常显示 */
+            transition: all 2s;
+        }
+        .box:hover {
+            background-image: linear-gradient(red, blue);
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

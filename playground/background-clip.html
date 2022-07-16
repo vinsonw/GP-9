@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        /* 开关background-repeat为repeat vs no-repeat */
+        /* 会产生有趣的效果 */
+        .profile-box {
+            width: 500px; height: 500px;
+            background-image: url(../tasks/bosszhipin/img/vr.jpg);
+            /* 注意重复默认是在以background-origin(默认padding-box左上角）为原点的坐标系中上下（双向）和左右（双向）重复 */
+            background-repeat: no-repeat;
+            /* 以background-origin为原点等比例放大（如果需要放大）,注意此时background-reapeat依然有效*/
+            background-size: cover;
+            /* 然后，background-img的尺寸(cover)和重复情况(no-repeat)都在坐标中上确定了 */
+            /* 最后一步backgournd-clip决定上面的结果截取哪部分展示给用户，默认截取border-box范围的内容*/
+            /* background-clip: padding-box; */
+            padding: 20px;
+            border: 20px solid rgba(173,216,230,0.6);
+        }
+    </style>
+</head>
+<body>
+   <div class="profile-box"></div> 
+</body>
+</html>

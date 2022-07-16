@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     * {padding: 0; margin: 0;}
+       .box {
+            width: 500px; height: 500px;
+            background-color: lightblue;
+            position: relative;
+            /* 1. 当box的position不是static时，就创建了一个新的层叠上下文(stacking context)，*/
+            /* 2. box的所有后代元素都属于这个新的层叠上下文，后代元素的z-index值也只在这个父级层叠上下文中有意义*/
+            /* 3. box的后代元素如何和box之外的元素确定层叠顺序，见：http://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context */
+            z-index: 10;
+       } 
+
+       .position1 {
+            width: 300px; height: 300px;
+            background-color: lightcoral;
+            position: absolute;
+            left: 250px;
+            top: 60px;
+            z-index: 1;
+       }
+
+       .position2 {
+            width: 200px; height: 200px;
+            background-color: lightgreen;
+            border: dashed 1px black;
+            position: absolute;
+            left: 30px;
+            top: 180px;
+       }
+
+       .static3 {
+            width: 300px; height: 300px;
+            background-color: lightseagreen;
+            /*探索中发现：如果设置non-positioned的元素的opacity < 1，它的层叠顺序*/
+            /*自动变成和z-index:0, opacity=1的positioned元素一样，见https://stackoverflow.com/a/11742116/9649450*/
+            opacity: 0.5;
+            border: 1px dotted black;
+            /*z-index只能应用到positioned element上面，下面的语句无效*/
+            /*也就是non-positioned元素的z-index可以理解为锁死为0 (严格来说z-index不适用于non-positioned元素)*/
+            z-index: 999;
+       }
+
+       .position4 {
+            width: 200px; height: 200px;
+            background-color: lightgray;
+            position: absolute;
+            left: 150px;
+            top: 150px;
+       }
+    </style>
+</head>
+<body>
+   <div class="box">
+    <div class="position1">1-positioned</div>
+    <div class="position2">2-positioned</div>
+    <div class="static3">3-static</div>
+    <div class="position4">4-positioned</div>
+   </div> 
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 500px; height: 500px;
+            background-color: lightblue;
+            position: relative;
+        }
+        /* position设置为fixed/absolute以后, display的值为inline的会变为block  */
+        /* 见: https://stackoverflow.com/questions/27953892/positionabsolute-fixed-changes-display-property-to-block */
+        .child {
+            width: 200px; height: 200px;
+            background-color: lightcoral;
+            /* 因为设置了下面这句，span.child可以认识宽高了 */
+            position: absolute; 
+            left: 50%;
+            top: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <span class="child">这是第一个span里的内容</span>
+        <span>这是下面一个span里的内容</span>
+    </div>
+</body>
+</html>
