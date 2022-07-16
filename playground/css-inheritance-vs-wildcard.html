@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance vs Wildcard</title>
+</head>
+<style>
+* {
+    color: red;
+}
+
+/* div字体为红色，不会继承body的字体颜色， */
+/* 而是以通配符*为准，说明通配符优先级高于继承 */
+body {
+    color: blue;
+}
+
+</style>
+<body>
+    <div>
+        Hello World
+    </div>
+</body>
+</html>
