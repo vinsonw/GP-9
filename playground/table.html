@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../before/qf-homework/common/normalize.css">
     <title>Table</title>
 </head>
 <body>
+    <!-- 第一次探索 -->
     <table border=2 align=center cellspacing=0 width="500"> <!-- 这里的algin是决定table自身的水平位置，比较特殊 -->
         <thead>
             <tr>
@@ -20,6 +22,254 @@
                 <td>1</td>
                 <td>2</td>
                 <td>3</td>
+            </tr>
+        </tbody>
+    </table>
+   <br> 
+   <br> 
+    <!-- CSS 3 Mastery Chapter 9 -->
+    <!-- 表格应用1：日历表格 -->
+    <style>
+        .cal {
+            border-collapse: collapse;
+            table-layout: fixed;
+            width: 100%;
+            max-width: 25em;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        .cal caption {
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            line-height: 2;
+            font-size: 1.5em;
+        }
+
+        .cal-weekend {
+            background-color: #fef0f0;
+            background-color: rgba(255,0,0,0.05);
+        }
+
+        .cal th,
+        .cal td {
+            line-height: 3;
+            padding: 0;
+            /* 每一列宽度是表格宽度的1/7 */
+            /* width: 14.285%; */
+        }
+
+        .cal td {
+            border: 1px solid #eee;
+        }
+
+        .cal thead {
+            border-bottom: 3px solid #666;
+        }
+
+        .cal a {
+            display: block;
+            text-decoration: none;
+            color: #2f273c;
+        }
+
+        /* :focus之前没用过，真香 */
+        .cal a:hover,
+        .cal a:focus {
+            background-color: #cde7ca;
+        }
+
+        .cal-inactive {
+            background-color: #efefef;
+            color: #aaa;
+            /* 鼠标悬停显示一个静止停车的标志 */
+            cursor: not-allowed;
+        }
+        .cal-current {
+            background-color: #7d5977;
+            background-color: rgba(71, 14, 62, 0.6);
+        }
+        .cal-current a {
+            color: #fff;
+        }
+    </style>
+    <table class="cal">
+        <caption><strong>1月</strong> 2015年</caption>
+        <colgroup>
+            <col class="cal-mon">
+            <col class="cal-tue">
+            <col class="cal-wed">
+            <col class="cal-thu">
+            <col class="cal-fri">
+            <col class="cal-weekend">
+            <col class="cal-weekend">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>周一</th>
+                <th>周二</th>
+                <th>周三</th>
+                <th>周四</th>
+                <th>周五</th>
+                <th>周六</th>
+                <th>周日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="cal-inactive">29</td>
+                <td class="cal-inactive">30</td>
+                <td class="cal-inactive">31</td>
+                <td><a href="#">1</a></td>
+                <td><a href="#">2</a></td>
+                <td><a href="#">3</a></td>
+                <td><a href="#">4</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">5</a></td>
+                <td><a href="#">6</a></td>
+                <td><a href="#">7</a></td>
+                <td><a href="#">8</a></td>
+                <td><a href="#">9</a></td>
+                <td><a href="#">10</a></td>
+                <td><a href="#">11</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">12</a></td>
+                <td><a href="#">13</a></td>
+                <td><a href="#">14</a></td>
+                <td><a href="#">15</a></td>
+                <td><a href="#">16</a></td>
+                <td class="cal-current"><a href="#">17</a></td>
+                <td><a href="#">18</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">19</a></td>
+                <td><a href="#">20</a></td>
+                <td><a href="#">21</a></td>
+                <td><a href="#">22</a></td>
+                <td><a href="#">23</a></td>
+                <td><a href="#">24</a></td>
+                <td><a href="#">25</a></td>
+            </tr>
+            <tr>
+                <td><a href="#">26</a></td>
+                <td><a href="#">27</a></td>
+                <td><a href="#">28</a></td>
+                <td><a href="#">29</a></td>
+                <td><a href="#">30</a></td>
+                <td><a href="#">31</a></td>
+                <td class="cal-inactive">1</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <!-- 表格应用2： 响应式表格 -->
+    <style>
+        .cars {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .cars caption {
+            text-align: left;
+            font-style: italic;
+            border-bottom: 1px solid #ccc;
+        }
+        .cars tr:nth-child(even){
+            background-color: #eee;
+        }
+        .cars caption,
+        .cars th,
+        .cars td {
+            text-align: left;
+            padding: 0 .5em;
+            line-height: 2;
+        }
+        .cars thead {
+            border-bottom: 2px solid;
+        }
+
+        @media only screen and (max-width: 760px) {
+            .cars {
+                display: block;
+                width: 100%;
+            }
+            .cars thead {
+                display: none;
+            }
+            .cars tr {
+                border-bottom: 1px solid #000;
+            }
+            .cars td,
+            .cars th {
+                /* 版本1：原书版本 */
+                /* 因为使用了float，下面这句可以去掉 */
+                /* display: block; */
+                /* float是关键 */
+                /* TODO 似乎附带的display:inline-block才是关键 */
+                float: left;
+                width: 100%;
+                box-sizing: border-box;
+                /* 版本2： */
+                /* display: inline-block;
+                width: 100%;
+                box-sizing: border-box; */
+            }
+            .cars th {
+               font-weight: 600; 
+               border-bottom: 2px solid;
+               padding-top: 10px;
+            }
+            .cars td::before {
+                content: attr(data-label);
+                display: inline-block;
+                width: 40%;
+                font-style: italic;
+            }
+        }
+    </style>
+    <table class="cars">
+        <caption>特斯拉车型对比</caption>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Top speed</th>
+                <th>Range</th>
+                <th>Length</th>
+                <th>Width</th>
+                <th>Weight</th>
+                <th>Starting price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- <td>Model S</td>
+                <td>201 km/s</td>
+                <td>426 km</td>
+                <td>4 976mm</td>
+                <td>1 963mm</td>
+                <td>2108 kg</td>
+                <td>$69 900</td> -->
+                <!-- th会让文字加粗 -->
+                <th scope="row">Model S</th>
+                <td data-label="Top speed">201 km/s</td>
+                <td data-label="Range">426 km</td>
+                <td data-label="Length">4 976mm</td>
+                <td data-label="Width">1 963mm</td>
+                <td data-label="Weight">2108 kg</td>
+                <td data-label="Starting price">$69 900</td>
+
+            </tr>
+            <tr>
+                <th scope="row">Roadster</th>
+                <td data-label="Top speed">201 km/h</td>
+                <td data-label="Range">393 km</td>
+                <td data-label="Length">3 946mm</td>
+                <td data-label="Width">1 873mm</td>
+                <td data-label="Weight">1 235kg</td>
+                <td data-label="Starting price">$109000</td>
             </tr>
         </tbody>
     </table>
