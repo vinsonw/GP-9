@@ -48,5 +48,34 @@
         <li><a href="#">Hallelujah 2</a></li>
         <li><a href="#">Hallelujah 3</a></li>
     </ul>
+    <style>
+        .wrapper {
+            width: 600px; height: 600px;
+            background-color: lightblue;
+
+            display: flex;
+        }
+        .item {
+            box-sizing: border-box;
+            width: 400px; height: 400px;
+            background-color: aquamarine;
+            border: 10px solid black;
+            /* 默认flex-shrink: 1，下面改为0会有溢出效果 */
+            flex-shrink: 0;
+
+            /* flex-baiss默认值为auto，即首选宽度是item自身宽度（width或者width未设置时的内容宽度） */
+            /* 重要：flex-basis会覆盖width的值，与前后顺序无关， */
+            /* 如果设置为0，则弹性项的content-box在主轴方向的尺寸为0（边框还在） */
+            flex-basis: 0;
+            /* flex-grow: 1; */
+
+            /* 试验发现flex-basis为0时，flex-shrink的取值对弹性项尺寸无影响，因为此时弹性项(内容区)宽度为0，肯定不会超出容器主轴尺寸 */
+        }
+    </style>
+    <div class="wrapper">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
 </body>
 </html>
