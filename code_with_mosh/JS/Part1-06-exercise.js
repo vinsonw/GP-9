@@ -6,11 +6,11 @@
 // const arr = [3, 4];
 
 // // Add End
-// console.log(arr.push(5,6)); // 返回新数组的程度，即4
+// console.log(arr.push(5,6)); // 返回新数组的长度，即4
 // console.log(arr);
 
 // // Add Beginning
-// console.log(arr.unshift(1,2)); // 返回新数组的程度，即6
+// console.log(arr.unshift(1,2)); // 返回新数组的长度，即6
 // console.log(arr);
 
 // // Add middle
