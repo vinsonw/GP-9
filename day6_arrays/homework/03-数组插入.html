@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leon</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+   /*
+      按照顺序向数组内插入一个数据
+    */
+
+    // 已知排序完整的数组
+    var arr = [ 10, 20, 30, 40, 50]
+
+    // 准备要插入的数字
+    var n = 22;
+
+    // 结果: 把 n 按照现有顺序插入到数组内
+    let moreThanMax = true;
+    for (let index = 0; index < arr.length; index++) {
+      // console.log(index);
+      if (n <= arr[index]) {
+        arr.splice(index,0,n);
+        moreThanMax = false;
+        break;
+      }
+    }
+    if (moreThanMax)
+      arr.push(n);
+    console.log(arr);
+
+
+
+
+</script>

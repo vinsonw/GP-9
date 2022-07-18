@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Leon</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  // 设计一个程序，使用一个数组接收用户输入的7门课程的成绩，然后在页面上显示其总成绩和平均分，并列出小于60的成绩。
+  /*
+   分析思路：
+   1. 通过循环 弹出提示输入窗7次，并将接受的成绩保存在一个数组中
+   2. 循环遍历成绩数组，累加获取成绩总分，并判断成绩是否大于60，将小于60的依次放入一个新数组中
+   3. 在页面中输出成绩总分和平均分以及小于60的成绩分数
+   提示：数组可以通过数组方法 toString 将数组中的元素转为字符串
+  	var arr = [1,2,3]
+  	console.log(arr.toString()) // 字符串 '1,2,3'
+   */
+  let scores = new Array(7);
+  let under60 = [];
+  for (let index = 0; index < 7; index++) {
+    scores[index] = Number(prompt(`输入第${index+1}门成绩`));
+    if (scores[index] < 60)
+      under60.push(scores[index]);
+  }
+  let sum = scores.reduce((a,c) => a+c);  
+  document.write(`
+  总分${sum},
+  平均成绩为
+  ${Math.round( sum / scores.length)}, 
+  低于60的成绩${under60}`);
+</script>

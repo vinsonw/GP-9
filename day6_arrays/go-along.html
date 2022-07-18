@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>Day 6 Array and two sort algms</title>
+</head>
+
+<body>
+  <h1>Another day on earth.</h1> 
+</body>
+<script>
+    var arr = [1, 2, 4, 6, 7, 8, 9, 5, 3];
+    // 需求1： 找出数组中的最大值
+    var max = arr[0];
+    for (var index = 1; index < arr.length; index++)
+        if (max < arr[index])
+            max = arr[index];
+    // console.log(max);
+    // 需求2： 找出数组中的最小值的索引下标
+    // 3. 创建一个数组，数组中的数据是从2开始的连续偶数30个
+    var cnt = 0;
+    var num = 2;
+    var arr1 = [];
+    while (cnt < 30) {
+        arr1[cnt] = num;
+        cnt++;
+        num += 2;
+    }
+    console.log(arr1);
+    // 4. 求数组中每5个的平均值，并放入新数组
+    var arr2 = [];
+    var cnt2 = 0;
+    var sum = 0;
+    for (var index = 0; index < arr1.length; index++) {
+        sum += arr1[index];
+        if ((index + 1) % 5 == 0) {
+            arr2[cnt2] = sum / 5;
+            cnt2++;
+            sum = 0;
+        }
+    }
+    console.log('需求2', arr2);
+</script>
+<!-- 数组排序 -->
+<script>
+    // 冒泡排序
+    var arr = [3, 1, 8, 5, 6, 4, 9, 7, 2];
+    console.log('排序前', arr);
+    for (let index = 0; index < arr.length - 1; index++)
+        for (let ii = 0; ii < arr.length - 1 - index; ii++) {
+            if (arr[ii] > arr[ii + 1]) {
+                let temp = arr[ii + 1];
+                arr[ii + 1] = arr[ii];
+                arr[ii] = temp;
+            }
+        }
+    console.log('冒泡排序', arr);
+
+
+    // 选择排序
+    var arr = [3, 1, 8, 5, 6, 4, 9, 7, 2];
+    console.log('排序前', arr);
+    for (let index = 0; index < arr.length; index++) {
+        minIndex = index;
+        for (let ii = index + 1; ii < arr.length; ii++)
+            if (arr[minIndex] > arr[ii]) minIndex = ii;
+
+        if (minIndex != index) {
+            var temp = arr[index];
+            arr[index] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+    console.log('选择排序', arr);
+
+</script>
+
+</html>

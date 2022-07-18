@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leon</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  // 通过循环得到一个5×5的二维数组arr   赋1到25的自然数，
+  // 然后输出该数组的左下半三角。试编程。
+
+  /* arr数组效果如下
+    [
+      [1,2,3,4,5],
+      [6,7,8,9,10],
+      [11,12,13,14,15],
+      [16,17,18,19,20],
+      [21,22,23,24,25]
+    ]
+   */
+   /* 页面中输出如下效果
+      1  
+      6  7  
+      11  12  13  
+      16  17  18  19  
+      21  22  23  24  25    
+    */
+
+let arr = new Array(5);
+for (let row = 0; row < 5; row++) {
+  arr[row] = new Array(5);
+  for (let column = 0; column < 5; column++)
+    arr[row][column] = 5 * row + column + 1;
+}
+console.log(arr);
+for (let row = 0; row < 5; row++) {
+  for (let column = 0; column < row+1; column++)
+    document.write(arr[row][column]+'&nbsp;&nbsp;');
+  document.write('<br>');
+}
+
+</script>
