@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7</title>
+</head>
+<body></body>
+<script>
+
+// 练习：重写arr.sort()方法
+function mySort(callback) {
+    for (let index = 0; index < this.length-1; index++) {
+        for (let ii = 0; ii < this.length - 1 - index; ii++) {
+            let res = callback(this[ii], this[ii+1]);
+            if (res > 0) {
+                let temp;
+                temp = this[ii];
+                this[ii] = this[ii+1];
+                this[ii+1] = temp;
+            }
+        }
+    }
+}
+
+
+arr = [7,8,1,3,5];
+// 给数组原型添加mySort方法，以便所有数组都可以调用
+Array.prototype.mySort = mySort;
+arr.mySort((a,b) => a-b);
+// console.log(arr);
+
+</script>
+<script>
+// 实现arr.filter()方法
+
+
+</script>
+<script>
+// 实现插入排序
+arr = [3, 5, 1, 9, 10, 4, 2, 1];
+
+for (let i = 1; i < arr.length; i++) {
+    let temp = arr[i];
+    let j = i - 1;
+    while (arr[j] > temp) {
+        // 重点: 如果arr[j] > temp, 将arr[j]往右移动一位，
+        // 不要担心右边的元素被覆盖，因为最终只有arr[i]被覆盖
+        // 而arr[i]的值已经保存到temp中
+        arr[j+1] = arr[j];
+        j--;
+    }
+    // 重点：
+    // arr[j+1]的值被temp覆盖，但是不用担心，被覆盖前arr[j+1]的值已经向右复制了一份
+    arr[j+1] = temp;
+}
+
+console.log('排序后',arr);
+
+</script>
+</html>
