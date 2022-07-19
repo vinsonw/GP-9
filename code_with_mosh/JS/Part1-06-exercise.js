@@ -73,6 +73,7 @@
 // console.log(resultIndex);
 
 // // ↑↑ 注意find/findIndex只返回第一个符合条件的项
+// find未找到返回undefined, findIndex未找到返回-1
 
 // // ES6 Arrow Function ES6中的箭头函数
 // // 可以简化传入函数的形式
