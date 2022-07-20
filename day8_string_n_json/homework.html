@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 Homework</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body onclick="setBodyColorValue()"></body>
+<script>
+// 随机生成颜色--十六进制的颜色
+// `#abcdef`  `#abc`===>`#aabbcc`
+function getColorValue() {
+    return Math.floor(Math.random()*256);
+}
+
+function getRandomHexColorValue() {
+    // 生成一个长度为3的空数组，但是为了map()遍历，需要填充placeholder值
+    let colors = new Array(3).fill(1);
+    return (
+        '#' 
+        +
+        colors
+        .map(item => getColorValue())
+        .map(
+            item => { 
+                let newItem = item.toString(16);
+                if (newItem.length == 1) newItem = '0' + newItem;
+                return newItem; 
+            }
+        )
+        .join(''));
+  }
+function setBodyColorValue() {
+    let color = getRandomHexColorValue();
+    console.log(color);
+    document.body.style.backgroundColor = color;
+}
+</script>
+</html>

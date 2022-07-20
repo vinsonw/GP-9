@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,html {
+            height: 100%;
+        }
+    </style>
+</head>
+<body onclick="changeColor()" id="body"></body>
+<script>
+// 快速排序
+function quickSort(arr) {
+    if (arr.length <= 1) return arr;
+    // console.log('arr',arr);
+    let centerIndex = parseInt(arr.length / 2);
+    let centerValue = arr.splice(centerIndex, 1)[0];
+    // console.log(centerValue);
+    // TODO 为什么?
+    // 因为这样small和big存储了同一个数组的地址
+    // 不可写成let small = big = [];
+    let small = [];
+    let big = [];
+
+    for (let index = 0; index < arr.length; index++) {
+        arr[index] > centerValue? big.push(arr[index]):small.push(arr[index]);
+    }
+    // arr.length = 0;
+    return [].concat(quickSort(small), centerValue, quickSort(big));
+}
+
+let arr1 = [1, 2, 5, 7, 4, 8];
+// console.log(quickSort(arr1));
+</script>
+<script>
+// 字符串统计
+// 用对象的键值对做字符统计
+</script>
+<script>
+// 字符串案例：
+// let str = 'Whatever you want';
+// alert(str.split(' ').reverse().join(' ')); 
+
+// 过滤敏感词
+var str = '生活总会有大麻烦 黑夜总会过去';
+var censored = ['大麻','夜总会'];
+for (let i = 0; i < censored.length; i++) {
+    let mockText = '';
+    for (let ch of censored[i]) {
+        mockText += '喵';
+    }
+    while (str.includes(censored[i])) {
+        str = str.replace(censored[i], mockText);
+    }
+}
+// console.log(str);
+
+// 封装一个函数，将查询字符串转为对象
+let queryString = 'username=zs&userage=12&gender=男';
+
+function parseQueryString(str) {
+    let obj = {};
+    // 将数组reduce为一个对象
+    return str.split('&').reduce(
+        (a, item) => {a[item.split('=')[0]] = item.split('=')[1]; return a;}, {}
+    );
+}
+
+let obj = {
+    username: 'ls',
+    userage: 30
+};
+
+// 封装一个函数，做相反的事情
+function strifyToQueryString(obj) {
+    return Object.entries(obj).map(
+        item => item[0] + '=' + item[1]
+    ).reduce((a,c) => a + '&' + c);
+}
+console.log(parseQueryString(queryString));
+console.log(strifyToQueryString(obj));
+
+</script>
+<script>
+function getRandomIntegerBetween(m, n) {
+    return Math.floor(Math.random()*(n-m+1)) + m;
+}
+</script>
+<script>
+function changeColor() {
+    document.body.style.backgroundColor = `rgb(${getRandomIntegerBetween(0, 255)},${getRandomIntegerBetween(0, 255)},${getRandomIntegerBetween(0, 255)})`;
+}
+// changeColor()
+// setInterval(changeColor, 10);
+
+</script>
+</html>
