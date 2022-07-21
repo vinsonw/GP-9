@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leon</title>
+</head>
+<body>
+<button>点击获取验证码</button>
+</body>
+</html>
+<script>
+  /* 
+    模拟获取验证码按钮
+     + 一个按钮，原始内容 "点击获取验证码"
+     + 点击以后，内容改为 "再次获取(60s)" 随时间变化
+     + 60s 到达后，变回初始内容
+  */
+  // 操作页面元素的内容语法
+  // 页面元素.innerHTML = 内容
+  let btn = document.querySelector('button');
+  btn.onclick = function () {
+    // 防止倒计时开始后用户再次点击，禁用点击
+    btn.disabled = true;
+
+    let time = 60;
+    // 点击按钮立即显示变化，而不是等1s再开始
+    btn.innerHTML = `再次获取(${time}s)`;
+    let initTime = new Date();
+
+    let timer = setInterval( function (time) {
+      let now = new Date();
+      let elapsed = parseInt((now - initTime) / 1000);
+      let left = time - elapsed;
+      console.log(left);
+      if (left > 0)
+        btn.innerHTML = `再次获取(${left}s)`;
+      else if (left == 0){
+        btn.innerHTML = `再次获取(${left}s)`;
+        btn.innerHTML = `点击获取验证码`;
+        btn.disabled = false;
+        clearTimeout(timer);
+      }
+    }, 1000, time)
+  }
+</script>
