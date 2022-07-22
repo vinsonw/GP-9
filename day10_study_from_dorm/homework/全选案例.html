@@ -53,14 +53,11 @@ let itemBtns = document.querySelectorAll('.item');
 
 allBtn.onclick = function () {
   console.log(allBtn.checked)
-  if ( !(allBtn.checked) ) {
-    console.log('all is not checked');
-    allBtn.checked = true;
+  if ( allBtn.checked ) {
     itemBtns.forEach(
       item => item.checked = true
     );
   } else {
-    allBtn.checked = false;
     itemBtns.forEach(
       item => item.checked =false 
     );
