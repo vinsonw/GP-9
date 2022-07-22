@@ -48,4 +48,31 @@
           - 如果所有选项按钮都是选中状态，则全选择按钮选中
           - 如果所有选项按钮有任何一个未选中，则全选择按钮未选中
    */
+let allBtn = document.querySelector('.all');
+let itemBtns = document.querySelectorAll('.item');
+
+allBtn.onclick = function () {
+  console.log(allBtn.checked)
+  if ( !(allBtn.checked) ) {
+    console.log('all is not checked');
+    allBtn.checked = true;
+    itemBtns.forEach(
+      item => item.checked = true
+    );
+  } else {
+    allBtn.checked = false;
+    itemBtns.forEach(
+      item => item.checked =false 
+    );
+  }
+
+}
+
+itemBtns.forEach(item => item.onclick = function () {
+  console.log('item checked', item.checked)
+  let hasAllChecked = [...itemBtns].every(item => item.checked);
+  if (hasAllChecked) allBtn.checked = true;
+  else allBtn.checked = false;
+})
+
 </script>
