@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Leon</title>
 </head>
+
 <body>
-<button>点击获取验证码</button>
+  <button>点击获取验证码</button>
 </body>
+
 </html>
 <script>
   /* 
@@ -27,14 +30,14 @@
     btn.innerHTML = `再次获取(${time}s)`;
     let initTime = new Date();
 
-    let timer = setInterval( function (time) {
+    let timer = setInterval(function (time) {
       let now = new Date();
       let elapsed = parseInt((now - initTime) / 1000);
       let left = time - elapsed;
       console.log(left);
       if (left > 0)
         btn.innerHTML = `再次获取(${left}s)`;
-      else if (left == 0){
+      else if (left == 0) {
         btn.innerHTML = `再次获取(${left}s)`;
         btn.innerHTML = `点击获取验证码`;
         btn.disabled = false;
