@@ -59,27 +59,51 @@
 <body>
   <div class="header">网页头部</div>
   <ul>
-    <li>
-      <img src="">
+    <!-- <li>
+      <img src=""> pic
       <div class="info">
-        <p>名称：</p>
-        <p>地址：地址</p>
-        <p>城市：城市</p>
-        <p>价格：价格</p>
-        <p>演出时间：时间</p>
+        <p>名称：</p> name
+        <p>地址：地址</p> address
+        <p>城市：城市</p> city
+        <p>价格：价格</p> price
+        <p>演出时间：时间</p> showTime
       </div>
-    </li>
+    </li> -->
   </ul>
   <div class="footer">网页底部</div>
 </body>
 
 </html>
+<script src="data.js"></script>
 <script>
   /* 
     页面渲染
       + 根据数据把页面结果填充完整
   */
 
+// let li = document.querySelector('li');
+// li.innerHTML = '<p>this is a test</p>';
 
+function generateLiString(pic, name, address, city, price, showTime) {
+  return `
+  <li>
+      <img src="${pic}">
+      <div class="info">
+        <p>名称：${name}</p>
+        <p>地址：${address}</p>
+        <p>城市：${city}</p>
+        <p>价格：${price}</p>
+        <p>演出时间：${showTime}</p>
+      </div>
+    </li>
+   `
+}
+
+let ul = document.querySelector('ul');
+let str = '';
+list.forEach(
+  el => str += generateLiString(el.pic, el.name, el.address, el.city, el.price, el.showTime)
+);
+ul.innerHTML = str;
 
 </script>
