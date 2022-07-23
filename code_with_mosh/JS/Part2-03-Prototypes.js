@@ -40,7 +40,7 @@ let objectBase = Object.getPrototypeOf(person);
 let descriptor = Object.getOwnPropertyDescriptor(objectBase, 'toString');
 // * 控制台打印内容如下:
 //{writable: true, enumerable: false, configurable: true, value: ƒ}
-// configurable: truee
+// configurable: true
 // numerable: false
 // value: ƒ toString()
 // writable: true
