@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync code versus Async code</title>
+</head>
+<body>
+    <h1>Sync code versus Async code</h1>
+</body>
+<script>
+// 观看一个绝赞的speech: https://www.youtube.com/watch?v=8aGhZQkoFbQ
+// 对应的在线工具：http://latentflip.com/loupe/?code=c2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCl7DQogICAgY29uc29sZS5sb2coJ2hpJyk7DQp9LCA1MDAwKTsNCnNldFRpbWVvdXQoZnVuY3Rpb24gdGltZW91dCgpew0KICAgIGNvbnNvbGUubG9nKCdoaScpOw0KfSwgNTAwMCk7DQpzZXRUaW1lb3V0KGZ1bmN0aW9uIHRpbWVvdXQoKXsNCiAgICBjb25zb2xlLmxvZygnaGknKTsNCn0sIDUwMDApOw0Kc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCl7DQogICAgY29uc29sZS5sb2coJ2hpJyk7DQp9LCA1MDAwKTsNCg%3D%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
+console.log('Start!');
+setTimeout(function () {
+    console.log('Async.1');
+},5000); // 经测试，这里是将匿名函数存在webapis部分并立刻开始计时，然后继续执行下面的同步代码(Sync code)
+setTimeout(function () {
+    console.log('Async.2');
+},5000); // 经测试，这里是也是匿名函数存在webapis部分并立刻开始计时，但是开始计时的时间晚于上面的匿名函数
+setTimeout(function () {
+    console.log('Async.3');
+},5000); // 同上
+setTimeout(function () {
+    console.log('Async.4');
+},5000); // 同上
+
+(new Array(10000)).fill(1).forEach(
+    el => console.log(el)
+); 
+// ↑↑↑这个漫长的循环开始执行【最多】5s后(因为计时开始于setTimeout执行，不是开始于这个循环开始执行时刻)，
+// setTimeout设定的匿名函数们就已经全部在callback queue里面等待执行了
+// 但是因为该循环还在执行, call stack没有清空，setTimeout设定的函数只能在callback queue里面继续等待
+// 等循环终于执行完毕，event loop会立刻将等待的匿名函数复制到此时空的call stack中执行
+// => 所以循环结束和匿名函数执行中间没有间隔
+
+
+</script>
+</html>
