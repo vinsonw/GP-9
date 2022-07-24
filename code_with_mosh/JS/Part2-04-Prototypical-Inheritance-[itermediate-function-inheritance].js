@@ -10,8 +10,10 @@ Shape.prototype.fly = function () {
     console.log('Eager for the sky is embeded in your gene~');
 }
 
-function extend(Child, Parent) {
-    Child.prototype = Object.create(Parent.prototype);
+// Mosh's version says the second arg is Parent
+// But I think it's actually GrandParent, which Parent derives from.
+function extend(Child, GrandParent) {
+    Child.prototype = Object.create(GrandParent.prototype);
     Child.prototype.constructor = Child;
 }
 
