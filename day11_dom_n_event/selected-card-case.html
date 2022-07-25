@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fucking hell</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        ul {list-style-type: none;}
+        .container {
+            width: 600px; height: 600px;
+            display: flex;
+            flex-direction: column;
+            border: 20px black solid;
+        }
+        .tab {
+            height: 200px;
+            line-height: 200px;
+            background-color: lightblue;
+            font-size: 50px;
+            display: flex;
+            align-items: center;
+        }
+        .tab>li {
+            height: 100%;
+            flex: 1;
+            color: #FF0000;
+            text-align: center;
+            cursor: pointer;
+        }
+        .tab>.active {
+            background-color: skyblue;
+            color: #FFF;
+        }
+        .box {
+            flex: 1;
+            background-color: lightcoral;
+            font-size: 72px;
+            line-height: 400px;
+        }
+        .box>.active {
+            display: block;
+        }
+        .box>li {
+            display: none;
+            height: 100%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="tab">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <ul class="box">
+            <li class="active">A</li>
+            <li>B</li>
+            <li>C</li>
+        </ul>
+    </div>
+    
+</body>
+<script>
+
+// 选项卡案例
+let tabs = [...document.querySelectorAll('.tab>li')];
+let boxs = [...document.querySelectorAll('.box>li')];
+
+// Vinson's version
+// 只适用两个数组中的元素按顺序对应
+// for (let tab of tabs) {
+//     tab.onclick = function () {
+//         // for (let tab of tabs) tab.className = '';
+//         for (let tab of tabs) tab.classList.remove('active');
+//         this.classList.add('active');
+//         // TODO 为什么tab.className = 'active' 依然可以？
+//         // 无意中用了闭包?
+
+//         // for (let box of boxs) box.className = '';
+//         for (let box of boxs) box.classList.remove('active');
+//         boxs[tabs.indexOf(this)].classList.add('active');
+//     }
+// }
+
+// Instructor's version
+// 可以适应更复杂的对应关系
+for (let i = 0; i < tabs.length; i++) {
+
+    tabs[i].dataset.id = i;
+    tabs[i].onclick = function () {
+        for (let tab of tabs) tab.classList.remove('active');
+        this.classList.add('active');
+
+        for (let box of boxs) box.classList.remove('active');
+        boxs[this.dataset.id].classList.add('active');
+    }
+}
+
+</script>
+</html>
