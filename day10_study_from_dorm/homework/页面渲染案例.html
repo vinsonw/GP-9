@@ -84,26 +84,34 @@
 // let li = document.querySelector('li');
 // li.innerHTML = '<p>this is a test</p>';
 
-function generateLiString(pic, name, address, city, price, showTime) {
+function generateLiString(item) {
   return `
   <li>
-      <img src="${pic}">
+      <img src="${item.pic}">
       <div class="info">
-        <p>名称：${name}</p>
-        <p>地址：${address}</p>
-        <p>城市：${city}</p>
-        <p>价格：${price}</p>
-        <p>演出时间：${showTime}</p>
+        <p>名称：${item.name}</p>
+        <p>地址：${item.address}</p>
+        <p>城市：${item.city}</p>
+        <p>价格：${item.price}</p>
+        <p>演出时间：${item.showTime}</p>
       </div>
     </li>
    `
 }
 
 let ul = document.querySelector('ul');
+// forEach()实现
 let str = '';
 list.forEach(
-  el => str += generateLiString(el.pic, el.name, el.address, el.city, el.price, el.showTime)
+  el => str += generateLiString(el)
 );
 ul.innerHTML = str;
 
+// map实现
+// ul.innerHTML = list
+//                   .map(el => generateLiString(el))
+//                   .join('');
+
+// reduce实现
+// ul.innerHTML = list.reduce((a, c) => a += generateLiString(c), '');
 </script>
