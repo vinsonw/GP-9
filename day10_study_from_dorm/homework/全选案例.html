@@ -65,11 +65,15 @@ allBtn.onclick = function () {
 
 }
 
-itemBtns.forEach(item => item.onclick = function () {
-  console.log('item checked', item.checked)
-  let hasAllChecked = [...itemBtns].every(item => item.checked);
+// 优化：将事件处理函数写在外面，防止为每一个itemBtn创建一个事件处理函数(浪费内存)
+const handler = function () {
+  // TODO 这里访问不到item
+  // console.log('item checked', item.checked)
+  let hasAllChecked = [...itemBtns].every(el => el.checked);
   if (hasAllChecked) allBtn.checked = true;
   else allBtn.checked = false;
-})
+};
+
+itemBtns.forEach(item => item.onclick = handler );
 
 </script>
