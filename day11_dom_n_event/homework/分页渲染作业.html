@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body > div {
+      width: 1200px;
+      margin: 0 auto;
+      background-color: skyblue;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      font-size: 60px;
+    }
+
+    ul, li {
+      list-style: none;
+    }
+
+    ul {
+      width: 1200px;
+      margin: 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    li {
+      width: 295px;
+      border: 1px solid #333;
+      height: 510px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+    img {
+      width: 280px;
+      height: 350px;
+      display: block;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .pagination {
+      border: 1px solid #333;
+      margin: 10px auto;
+      height: 80px;
+      background-color: #fff;
+      color: #333;
+      justify-content: flex-start;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+
+    .pagination > .prev,
+    .pagination > .next {
+      padding: 3px 10px;
+      background-color: skyblue;
+      cursor: pointer;
+      height: 40px;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pagination > span.disable {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .pagination > .total {
+      padding: 0 10px;
+      font-size: 20px;
+    }
+
+    select {
+      padding: 5px 10px 5px 20px;
+      font-size: 18px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">网页头部</div>
+  <div class="pagination">  
+    <span class="prev disable">&lt;</span>
+    <span class="total">1 / 100</span>
+    <span class="next">&gt;</span>
+    <select>
+      <option value="4">4</option>
+    </select>
+  </div>
+  <ul>
+    <li>
+      <img src="" alt="">
+      <div class="info">
+        <p>名称</p>
+        <p>城市: 城市</p>
+        <p>地址: 地址</p>
+        <p>价格: 价格</p>
+        <p>演出时间: 时间</p>
+      </div>
+    </li>
+  </ul>
+  <div class="footer">网页底部</div>
+  <script src="./data.js"></script>
+  <script>
+    /*
+      分页渲染        
+          + 默认显示第 1 页
+          + 默认一页 4 条
+          + 点击下一页/上一页按钮
+          + 切换一页显示多少条
+    */
+    // 注意：代码记得写注释
+  </script>
+</body>
+</html>
