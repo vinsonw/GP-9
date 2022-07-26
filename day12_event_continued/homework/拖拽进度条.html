@@ -41,5 +41,45 @@
     <span>0%</span>
   </div>
 </body>
+<script>
+// 重点: 绑定和解绑的事件源不能是同一个元素，否则解绑以后，绑定的事件就无法再触发了
+// 所以这里需要引入document，它上面的mousemove事件解绑以后，还可以在bigBar的mousedown事件内部再次绑定
+// bigBar的mousedown和mouseup事件一直有效
+let bigBar = document.querySelector('.big');
+let smallBar = document.querySelector('.small');
+let percentage = document.querySelector('span');
 
+bigBar.onmousedown = function (e) {
+  // 限制必须左键操作
+  if (e.button != 0) return;
+  
+  // 让点击有效
+  let x = e.clientX - bigBar.offsetLeft;
+  x = (x < 0) ? 0 : x;
+  x = (x < bigBar.offsetWidth)? x: bigBar.offsetWidth;
+  smallBar.style.width = x+'px';
+  percentage.innerText = (x / bigBar.offsetWidth * 100).toFixed(2) + '%';
+  
+  // 让拖拽有效
+  document.onmousemove = function (e) {
+    x = e.clientX - bigBar.offsetLeft;
+    x = (x < 0) ? 0 : x;
+    x = (x < bigBar.offsetWidth)? x: bigBar.offsetWidth;
+    smallBar.style.width = x+'px';
+    percentage.innerText = (x / bigBar.offsetWidth * 100).toFixed(2) + '%';
+  }
+};
+
+// 在bigBar上松开鼠标左键解绑移动事件
+bigBar.onmouseup = function () {
+  document.onmousemove = null;
+};
+
+// 允许拖拽时鼠标离开bigBar(体验更好)，离开bigBar以后松开鼠标左键解绑移动事件
+document.onmouseup = function () {
+  document.onmousemove = null;
+};
+
+
+</script>
 </html>
