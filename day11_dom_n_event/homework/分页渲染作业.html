@@ -105,11 +105,14 @@
     <span class="total">1 / 100</span>
     <span class="next">&gt;</span>
     <select>
-      <option value="4">4</option>
+      <option value="4" selected>4</option>
+      <option value="6">6</option>
+      <option value="8">8</option>
+      <option value="12">12</option>
     </select>
   </div>
   <ul>
-    <li>
+    <!-- <li>
       <img src="" alt="">
       <div class="info">
         <p>名称</p>
@@ -118,7 +121,7 @@
         <p>价格: 价格</p>
         <p>演出时间: 时间</p>
       </div>
-    </li>
+    </li> -->
   </ul>
   <div class="footer">网页底部</div>
   <script src="./data.js"></script>
@@ -131,6 +134,137 @@
           + 切换一页显示多少条
     */
     // 注意：代码记得写注释
+
+// TODO: 在非第1页重新选择每页展示个数的时候，从选择前的当前页面的第一个开始，避免页面整个变化
+function generateLiString(item) {
+  return `
+  <li>
+      <img src="${item.pic}">
+      <div class="info">
+        <p>名称：${item.name}</p>
+        <p>地址：${item.address}</p>
+        <p>城市：${item.city}</p>
+        <p>价格：${item.price}</p>
+        <p>演出时间：${item.showTime}</p>
+      </div>
+    </li>
+   `
+}
+let ul = document.querySelector('ul');
+
+// 第一页从数据数组的第一个元素开始渲染
+ul.dataset.id = '0';
+
+let totalBtn = document.querySelector('.total');
+let nextBtn = document.querySelector('.next');
+let prevBtn = document.querySelector('.prev');
+
+let sel = document.querySelector('select');
+console.log(sel);
+
+let dataNum = list.length;
+console.log(list.length);
+let selValue = 4;
+
+let maxPageNum = Math.ceil(dataNum / selValue)
+let currentPageNum = 1; 
+totalBtn.innerText = `${currentPageNum} / ${maxPageNum}`;
+
+let str = '';
+for (let i = selValue*(currentPageNum-1)+1; i < selValue * currentPageNum + 1; i++) {
+  str += generateLiString(list[i-1]);
+}
+
+  ul.innerHTML = str;
+
+nextBtn.onclick = function () {
+  if (currentPageNum < maxPageNum) {
+    currentPageNum++;
+    this.classList.remove('disable');
+    this.disabled = false;
+    if (currentPageNum == maxPageNum) {
+      this.classList.add('disable');
+      this.disabled = true;
+    }
+  } 
+
+  if (currentPageNum > 1) {
+    prevBtn.classList.remove('disable');
+    prevBtn.disabled = false;
+  }
+
+  // 更新pagination区域内容
+  totalBtn.innerText = `${currentPageNum} / ${maxPageNum}`;
+
+  if (currentPageNum == 19) {
+
+  }
+  let str = '';
+  let startItemId = selValue*(currentPageNum-1);
+  for (let i = startItemId+1; i < selValue * currentPageNum + 1; i++) {
+    if (i > dataNum) break;
+    str += generateLiString(list[i-1]);
+  }
+
+  ul.innerHTML = str;
+  ul.dataset.id = startItemId;
+}
+
+prevBtn.onclick = function () {
+  if (currentPageNum > 1) {
+    currentPageNum--;
+    this.classList.remove('disable');
+    this.disabled = false;
+    if (currentPageNum == 1)  {
+      this.classList.add('disable');
+      this.disabled = true;
+    }
+    
+  }
+
+  if (currentPageNum < maxPageNum) {
+    nextBtn.classList.remove('disable');
+    nextBtn.disabled = false;
+  }
+
+  // 更新pagination区域内容
+  totalBtn.innerText = `${currentPageNum} / ${maxPageNum}`;
+  let str = '';
+  let startItemId = selValue*(currentPageNum-1);
+  for (let i = startItemId+1; i < selValue * currentPageNum + 1; i++) {
+    str += generateLiString(list[i-1]);
+  }
+
+  ul.innerHTML = str;
+  ul.dataset.id = startItemId;
+}
+
+
+sel.onchange = function () {
+  for (let child of sel.children)  if (child.selected) selValue = child.value; 
+
+  // 更新pagination区域内容
+  maxPageNum = Math.ceil(dataNum / selValue)
+
+
+  // currentPageNum 应该根据ul.dataset.id来计算
+  // 计算之前页面的第一项在新的分页下应该在第几页，然后渲染那一页
+  // TODO 虽然之前页面第一项依然在变化后页面中，但是会移动位置
+  // TODO 保留第一位不动，待探索
+  currentPageNum = Math.ceil((ul.dataset.id*1+1) / selValue);
+
+  totalBtn.innerText = `${currentPageNum} / ${maxPageNum}`;
+
+  // 更新内容区域
+  let str = '';
+  for (let i = selValue*(currentPageNum-1)+1; i < selValue * currentPageNum + 1; i++) {
+    if (list[i-1]) str += generateLiString(list[i-1]); // 因为ceil，可能取不到
+  }
+
+  ul.innerHTML = str;
+}
+
+
   </script>
 </body>
 </html>
