@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Day 11 Go Along</title>
+    <style>
+        h1 {
+            width: 200px; height: 300px !important;
+            background-color: lightblue;
+        }
+        .active {
+            color: red;
+        }
+        .size {
+            background-color: blue;
+            width: 150px; height: 150px;
+            /* padding-box: 190px^2 */
+            padding: 20px;
+            /* border-box: 194px^2 */
+            border: 2px solid black;
+
+            margin: 20px;
+        }
+        .offsetBox {
+            background-color: red;
+            width: 150px; height: 150px;
+            /* padding-box: 190px^2 */
+            padding: 20px;
+            /* border-box: 194px^2 */
+            border: 10px solid black;
+
+            margin: 20px;
+        }
+        .wrapper {
+            position: relative;
+            border: 2px solid black;
+            padding: 20px;
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1 class="slogan" id="start" style="width:300px;">Life is great.</h1>
+    <h2>这个标签没有设置css样式</h2>
+    <h3>这个标签用于测试操作类名</h3>
+    <input type="text">
+    <input type="submit" value="hello">
+    <button>hello</button>
+    <div class="size">这个div用来测试获取元素尺寸</div>
+    <div class="offsetBox">这个offsetBox用来测试元素偏移</div>
+</div>
+</body>
+<script>
+
+let h1 = document.querySelector('h1');
+let h2 = document.querySelector('h2');
+let h3 = document.querySelector('h3');
+let inp = document.querySelectorAll('input')[0];
+let submit = document.querySelectorAll('input')[1];
+let btn = document.querySelector('button');
+let sizeBox = document.querySelector('.size');
+
+// 设置和读取原生属性: ele.attr
+h1.className = 'aNewClass'; // class属性与js关键字冲突，改为className
+h1.id = 'aNewId';
+
+console.log(h1.className);
+console.log(h1.id);
+
+// 设置和读取自定义属性
+h1.setAttribute('aHa', 'I found it');
+console.log(h1.getAttribute('aHa'));
+
+// 也可用来设置和读取原生属性(效率低不推荐)
+console.log(h1.getAttribute('id'));
+
+// 操作H5自定义属性
+// 每个元素节点都自带一个属性dataset
+// dataset类似一个对象，存储的是该标签上的所有H5自定义属性
+// 对H5自定义属性的操作，就是对dataset的操作(同对象操作语法)
+// => 设置的属性名在html源码中都自动带"data-"前缀
+h1.dataset.counting = 25;
+h1.dataset.type = 'gold';
+
+/* 
+ # 操作元素的样式
+ */
+
+// 获取元素的行内样式
+// 注意必须先在相应的html元素的标签上设置行内样式(写在属性style=""里面)
+// 否则返回空字符串)
+// [先设置后使用]
+console.log( h1.style.width ); // 返回'1000px'
+console.log( h1.style.height ); // 返回空字符串
+
+console.log( h2.style.width );  // 返回空字符串
+console.log( h2.style.height ); // 返回空字符串
+
+// 获取行内和非行内样式(也是必须先在html或者css文件中设置样式)
+// 即获取目前在该元素上生效的css样式
+// [不设置即可用]
+// console.log(window.getComputedStyle(h1).width); // 返回'1000px'
+// console.log(window.getComputedStyle(h1).height); // 返回300px
+
+// 数组关联语法
+// console.log(window.getComputedStyle(h1).backgroundColor);
+// 可写成:
+// console.log(window.getComputedStyle(h1)['background-color']);
+
+console.log(window.getComputedStyle(h2).width); // 返回h2宽度(body宽度)
+console.log(window.getComputedStyle(h2).height); // 返回h2高度
+
+// 低版本IE的对等写法
+// console.log(h1.currentStyle.fontSize);
+// console.log(h1.currentStyle['font-size']);
+
+// 设置元素的样式(只会设置在元素的行内样式上)
+// 如果内嵌式css设置了height: 300px !important;下面的设置不会生效
+// 也就是JS只是操作dom，不会改变原有的css层叠规则
+// h1.style.height = '3000px';
+
+/* 
+ # 操作元素内容
+ 1. innerHTML
+ 2. innerText
+ 3. value (只适用input表单元素)
+ */
+// innerHTML: 覆盖式写入元素的内容区，可识别html字符串
+// h1.innerHTML = '<em>Is life great?</em>'
+
+// innerText: 覆盖式写入元素的内容区，不识别html字符串
+h1.innerText = '<em>Is life great?</em>'
+
+// value: 对表单有效，对其他元素无效
+h1.value = 'test'; // !无效，必须是原生属性才能这么设置
+h1.setAttribute('value', 'test'); // 有效
+inp.value = 'Hello from JS(by value)'; // 成功写入文本框
+submit.value = 'JS(by value)'; // 成功改变input[type=submit]的默认显示
+btn.value = 'Hello from JS'; // !无效，不会改变button的内容区
+btn.innerText = 'Hello from JS(by innerText)'; // 有效
+
+
+/* 
+ # 操作元素的类名
+ 1. className (覆盖式修改)
+ 2. classList
+        + classList.add('class_name')
+        + classList.remove('class_name')
+        + classList.toggle('class_name')
+ */
+
+h3.classList.add('active'); // h3变红
+// h3.classList.remove('active'); // h3变黑(变回默认颜色)
+
+/* 
+ # 获取元素的尺寸
+ 1. ele.offsetWidth 获取元素border-box的宽
+       .offsetHeight 获取元素border-box的高
+ 2. ele.clientWidth 获取元素padding-box的宽
+       .clientHeight 获取元素padding-box的高
+ */
+
+/* border-box: 194px^2 */
+console.log('sizeBox offsetWidth(border-box):', sizeBox.offsetWidth);
+console.log('sizeBox offsetHeight(border-box):', sizeBox.offsetHeight);
+
+/* padding-box: 190px^2 */
+console.log('sizeBox clientWidth(padding-box):', sizeBox.clientWidth);
+console.log('sizeBox clientHeight:(padding-box)', sizeBox.clientHeight);
+
+
+/* 
+ # 获取元素的偏移量
+ 获取元素的偏移参考元素
+ ele.offsetParent 
+ // 得到该元素的偏移参考父级，即定位父级(元素自身不需要设置postion属性)
+ // 如果没有定位父级，则offsetParent返回body
+ ele.offsetBox 
+ */
+let offsetBox = document.querySelector('.offsetBox');
+
+console.log(offsetBox.offsetParent); // 返回position属性不是默认static的祖先元素(无符合要求的祖先元素返回body)
+console.log(offsetBox.offsetTop); // 返回元素border-box上侧距离定位父级padding-box上侧的距离
+console.log(offsetBox.offsetLeft); //  返回元素border-box左侧距离定位父级padding-box左侧的距离
+
+console.log(offsetBox.clientTop); // 返回元素上边框的宽度(包含可能的滚动条)
+console.log(offsetBox.clientLeft); // 返回元素左边框的宽度(包含可能的滚动条)
+
+/* 
+ # 获取可视窗口的尺寸
+ BOM获取:(包含滚动条)
+ window.innerWidth
+ window.innerHeight
+ DOM获取：(不包含滚动条)
+ document.documentElement.clientWidth
+ document.documentElement.clientHeight
+ */
+console.log("BOM");
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
+console.log("DOM");
+console.log(document.documentElement.clientWidth); // 窗口宽度减去竖直滚动条宽度(17px)
+console.log(document.documentElement.clientHeight);
+
+/* 
+ # 认识节点
+   分为四类：
+        元素节点/文本节点/属性节点/注释节点
+ */
+
+ // 获取节点
+ var ele = document.querySelector('html');
+
+// 获取非常规节点
+// 获取html
+ document.documentElement
+ // 获取body
+ document.head
+ // 获取body
+ document.body
+
+ // 获取常规元素节点
+ document.getElementById() // singular
+ document.getElementsByClassName() // plural
+ document.getElementByTagName() // pl
+ document.querySelector() // sg
+ document.querySelectorAll() // pl
+
+ // 相对获取
+ ele.childNodes // 所有节点(四类节点都计入)
+ ele.children // 所有元素节点
+ ele.firstChild
+ ele.lastChild
+ ele.firstElementChild
+ ele.lastElementChild
+ ele.previousElementSibling
+ ele.nextElementSibling
+
+ ele.previousSibling
+ ele.nextSibling
+
+ ele.parentNode
+ ele.parentElement
+ ele.attributes
+
+
+
+
+ // 创建节点
+//  var createdEle = document.
+ // 删除节点
+ // 插入节点
+ // 替换节点
+ // 克隆节点
+
+</script>
+</html>
