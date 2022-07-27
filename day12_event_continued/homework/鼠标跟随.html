@@ -37,21 +37,21 @@ let strs = [ "唐太宗李世民（598年1月28日－649年7月10日），陇西
             "唐玄宗李隆基（685年9月8日—762年5月3日），唐高宗李治与武则天之孙，唐睿宗李旦第三子，故又称李三郎，母窦德妃。 [1]  先天元年（712年）至天宝十五年（756年）在位，因安史之乱退位为太上皇，是唐朝在位最长的皇帝，亦是唐朝极盛时期的皇帝。"
           ]
 
-let aBtns = [...document.querySelectorAll('a')];
+let aBoxes = [...document.querySelectorAll('a')];
 let div = document.querySelector('div');
 
-for (let aBtn of aBtns) {
-  aBtn.onmouseover = function (e) {
+for (let aBox of aBoxes) {
+  aBox.onmouseover = function (e) {
     document.onmousemove = function (e) {
         // 注意这里的e是外层的e
         // console.log('e.offsetX', e.offsetX);
-        div.innerText = strs[aBtns.indexOf(aBtn)];
+        div.innerText = strs[aBoxes.indexOf(aBox)];
         div.style.left = e.pageX + 20 +'px';
         div.style.top = e.pageY +'px';
         div.style.display = 'block';
     }
   }
-  aBtn.onmouseout = function () {
+  aBox.onmouseout = function () {
     document.onmousemove = null;
     div.style.display = 'none';
   }

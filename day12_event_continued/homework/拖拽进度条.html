@@ -54,7 +54,8 @@ bigBar.onmousedown = function (e) {
   if (e.button != 0) return;
   
   // 让点击有效
-  let x = e.clientX - bigBar.offsetLeft;
+  let x = e.pageX - bigBar.offsetLeft; // 拖拽时鼠标可以出bigBar
+  // e.pageX - bigBar.offsetLeft === e.offsetX，右边更简洁，但是鼠标不能出bigBar，体验不好
   x = (x < 0) ? 0 : x;
   x = (x < bigBar.offsetWidth)? x: bigBar.offsetWidth;
   smallBar.style.width = x+'px';
@@ -62,7 +63,7 @@ bigBar.onmousedown = function (e) {
   
   // 让拖拽有效
   document.onmousemove = function (e) {
-    x = e.clientX - bigBar.offsetLeft;
+    x = e.pageX - bigBar.offsetLeft;
     x = (x < 0) ? 0 : x;
     x = (x < bigBar.offsetWidth)? x: bigBar.offsetWidth;
     smallBar.style.width = x+'px';
