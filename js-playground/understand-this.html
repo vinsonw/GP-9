@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Vinson</title>
+</head>
+<body>
+    <h1>Life is great.</h1>
+</body>
+<script>
+const o = {
+    fn: function() {
+        console.log('fn',this)
+    },
+    // "af" stands for "arrow function"
+    af:() => {
+        console.log('af',this)
+    }
+}
+
+// See MDN(must read): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#The_bind_method
+// "In most cases, the value of this is determined by how a function is called (runtime binding)."
+
+// this在一般函数中时，this指向与函数调用方式有关
+// 函数作为对象的方法被调用，指向方法所属的这个对象
+o.fn() // o {}
+
+// 函数作为一个全局对象的方法(ofn即window.ofn)被调用时，指向全局对象
+const oFn = o.fn; // window
+oFn();
+
+// this在箭头函数中的指向与其调用方式无关，this固定指向箭头函数创建时周围"词法上下文"(lexical content)中的this所指向的对象
+// 与调用方式无关
+
+const oAf = o.af;
+oAf() // 作为全局对象方法调用，返回window
+
+o.af() // 作为对象方法调用，依然返回window
+
+let boundF = o.af.bind({a:1});
+boundF(); // 依然返回window，忽略.bind()方法绑定的对象{a:1};
+
+
+</script>
+</html>
