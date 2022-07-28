@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Vinson</title>
+</head>
+<body>
+    <span>Life is great.</span>
+</body>
+<script>
+
+function moveText(ele, content, interval) {
+    content = content.split('');
+    let headChar = ''
+    setInterval( function () {
+        headChar = content.shift()
+        content.push(headChar);
+        ele.textContent = content.join('');
+    },interval);
+}
+
+let tab = document.querySelector('title');
+let tabContent = 'Hello World<<<<<<';
+moveText(tab, tabContent, 150);
+
+let span = document.querySelector('span');
+span.style.border = '2px solid black';
+span.style.fontSize = '32px';
+let spanContent = 'Life is great.<<<<';
+moveText(span, spanContent, 120);
+
+</script>
+</html>
