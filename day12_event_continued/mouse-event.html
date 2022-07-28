@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mouse Event</title>
+    <style>
+        body {
+            margin: 0; height: 0;
+        }
+        .parent {
+            width: 400px; height: 400px;
+            background-color: lightblue;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .child {
+            width: 200px; height: 200px;
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<!-- MouseEvent -->
+<div class="parent">
+    <div class="child"></div>
+</div>
+</body>
+<script>
+let parent = document.querySelector('.parent');
+let child = document.querySelector('.child');
+
+// 单击
+// 注意：是在单击抬起以后才会触发
+// parent.onclick = function (e) {
+//     console.log("EVENT TYPE:", e.type);
+//     console.log('clicked.');
+// };
+
+// 双击的时候也会同时触发单击
+// 注意：是在第二次抬起以后才会触发
+parent.ondblclick = function (e) {
+    console.log("EVENT TYPE:", e.type);
+    console.log('double clicked.');
+};
+
+// 右键单击
+parent.oncontextmenu = function (e) {
+    console.log("EVENT TYPE:", e.type);
+    console.log('right clicked.');
+};
+
+// 鼠标左键/右键/滚轮按下都会触发
+parent.onmousedown = function (e) {
+    console.log(['Left', 'Scroll', 'Right'][e.button] + 'down');
+    // console.log('EVENT TYPE', e.button);
+};
+
+// 鼠标左键/右键/滚轮抬起都会触发
+// 在click之前触发
+parent.onmouseup = function (e) {
+    // console.log('Mouse up:the wheel or left button or right button has been released.');
+    console.log(['Left', 'Scroll', 'Right'][e.button] + 'up');
+};
+
+// over/out是一对，特点是:
+// 1. 将后代元素不视为绑定元素的一部分
+// 2. 后代元素继承绑定的事件
+// 例子：鼠标从父元素上移入子元素上会同时出发父元素上的'over-out'和子元素上的'over-in'
+// parent.onmouseover = function () {
+//     console.log('over-in');
+// }
+
+// parent.onmouseout = function () {
+//     console.log('over-out');
+// }
+
+// enter/leave是一对，只对绑定元素有效，忽略其后代元素
+// 理解上比较简单
+// parent.onmouseenter = function () {
+//     console.log('enter');
+// }
+
+// parent.onmouseleave = function () {
+//     console.log('leave');
+// }
+
+
+</script>
+
+</html>

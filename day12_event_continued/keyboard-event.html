@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Keyboard Event</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="" id="">
+        <input type="submit" name="" id="">
+    </form>
+</body>
+<script>
+inp_text = document.querySelector('input[type=text]');
+console.log(inp_text);
+
+inp_text.onkeydown = function (e) {
+    console.log('(keydown)keycode', e.keyCode);
+    console.log('ctrlKey', e.ctrlKey);
+}
+
+inp_text.onkeypress = function (e) {
+    console.log('(keypress)keycode', e.keyCode);
+}
+
+inp_text.onkeyup = function(e) {
+    console.log('finger left.');
+}
+</script>
+</html>

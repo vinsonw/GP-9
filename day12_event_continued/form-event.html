@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Form Event</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="" id="">
+        <input type="submit" name="" id="">
+        <input type="reset" name="" id="">
+    </form>
+</body>
+<script>
+inp_text = document.querySelector('input[type=text]');
+form = document.querySelector('form');
+inp_text.style.outline = 'none';
+
+inp_text.oninput = function (e) {
+    inp_text.style.backgroundColor = 'lightblue';
+}
+inp_text.onfocus = function (e) {
+    inp_text.style.border = '1px solid lightblue';
+}
+inp_text.onblur = function (e) {
+    inp_text.style.border = '4px solid grey';
+}
+
+inp_text.onchange = function (e) {
+    inp_text.value = 'the value has changed.'
+}
+
+form.onreset = function (e) {
+    alert('It has been reset');
+}
+
+form.onsubmit = function (e) {
+    alert('But where to go?(And the page is gonna refresh)');
+}
+
+// focus input blur change reset submit 
+</script>
+</html>
