@@ -213,7 +213,7 @@ console.log(document.documentElement.clientHeight);
  */
 
  // 获取节点
- var ele = document.querySelector('html');
+ var ele = document.querySelector('div');
 
 // 获取非常规节点
 // 获取html
@@ -224,38 +224,66 @@ console.log(document.documentElement.clientHeight);
  document.body
 
  // 获取常规元素节点
- document.getElementById() // singular
- document.getElementsByClassName() // plural
- document.getElementByTagName() // pl
- document.querySelector() // sg
- document.querySelectorAll() // pl
+ document.getElementById('id') // singular
+ document.getElementsByClassName('class_name') // plural
+ document.getElementsByTagName('tag') // pl
+ document.querySelector('css-selector') // sg
+ document.querySelectorAll('css-selector') // pl
 
  // 相对获取
  ele.childNodes // 所有节点(四类节点都计入)
  ele.children // 所有元素节点
+
  ele.firstChild
  ele.lastChild
  ele.firstElementChild
  ele.lastElementChild
+
  ele.previousElementSibling
  ele.nextElementSibling
-
  ele.previousSibling
  ele.nextSibling
 
  ele.parentNode
  ele.parentElement
- ele.attributes
+ eleAttr = ele.attributes[0]
 
+ // 节点属性
+ // ele.nodeType
+ // ele.nodeName
+ // ele.nodeValue
 
 
 
  // 创建节点
-//  var createdEle = document.
- // 删除节点
- // 插入节点
- // 替换节点
- // 克隆节点
+ var createdEle = document.createElement('p');
+createdEle.textContent = 'hello world'
 
+// 插入节点
+// * 出乎意料的是以下两个操作是互斥的
+ele.appendChild(createdEle);
+ele.insertBefore(createdEle, h2); 
+
+ // 删除节点
+//  createdEle.remove();
+// ele.removeChild(createdEle)
+
+ // 替换节点
+//  var createdTxtNode = document.createTextNode('Hello text node');
+//  ele.replaceChild(createdTxtNode, createdEle)
+
+
+ // 克隆节点
+ // cloneNode(true/false)
+    // - 参数默认false 不克隆后代节点
+    // - 参数为true 克隆后代节点
+var clonedDvi = ele.cloneNode();
+document.body.appendChild(clonedDvi);
+var clonedDvi2 = ele.cloneNode(true);
+document.body.appendChild(clonedDvi2);
+
+// document.createDocumentFragment();
+// 用处：减少对dom的操作
+var dFrag = document.createDocumentFragment();
 </script>
 </html>
