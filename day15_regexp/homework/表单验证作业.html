@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>leon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    form {
+      width: 500px;
+      padding: 20px;
+      border: 10px solid pink;
+      border-radius: 15px;
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form > label {
+      height: 50px;
+      position: relative;
+    }
+
+    form > label > span {
+      position: absolute;
+      left: 20px;
+      bottom: 5px;
+      color: red;
+
+      display: none;
+    }
+
+    form > label > span.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <label for="">
+      用户名 : <input class="username" type="text">
+      <span>用户名必须字母开头6-12位, 请重新填写 ^_^</span>
+    </label>
+    <label for="">
+      密 码 : <input class="password" type="text">
+      <span>密码必须6-12位, 请重新填写 ^_^</span>
+    </label>
+    <label for="">
+      手机号 : <input class="phone" type="text">
+      <span>手机号不符合规则, 请重新填写 ^_^</span>
+    </label>
+    <label for="">
+      昵 称 : <input class="nickname" type="text">
+      <span>昵称必须3~5位中文, 请重新填写 ^_^</span>
+    </label>
+    <button>提交</button>
+  </form>
+</body>
+</html>
+<script>
+  // 实现表单验证
+
+function bind(ele, reg) {
+  let timer;
+  ele.oninput = function() {
+    clearTimeout(timer);
+    timer = setTimeout( () => { //使用箭头函数使得setTimout中的this指向ele
+      console.log(this.className); // 测试
+      let span = document.querySelector('.'+this.className + '~span');
+      if (!reg.test(this.value))  span.style.display = 'block';
+      else  span.style.display = 'none'; 
+    }, 200);
+  }
+}
+
+const uArr = [
+  document.querySelector('.username'),
+  document.querySelector('.password'),
+  document.querySelector('.phone'),
+  document.querySelector('.nickname')
+];
+
+const rArr = [
+  /[a-zA-Z]{6,12}/,
+  /\w{6,12}/,
+  /1\d{10}/,
+  /[\u4e00-\u9fa5]{3,5}/
+];
+
+for (let i = 0; i < uArr.length; i++) bind(uArr[i], rArr[i]);
+
+
+
+</script>
